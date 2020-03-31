@@ -1,0 +1,180 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: Film
+#------------------------------------------------------------
+
+CREATE TABLE Film(
+        id_film  Int  Auto_increment  NOT NULL ,
+        titre    Varchar (50) NOT NULL ,
+        synopsis Varchar (500) NOT NULL ,
+        note     Double NOT NULL ,
+        duree    Time NOT NULL ,
+        date     Date NOT NULL
+	,CONSTRAINT Film_PK PRIMARY KEY (id_film)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Acteur
+#------------------------------------------------------------
+
+CREATE TABLE Acteur(
+        id_acteur Int  Auto_increment  NOT NULL ,
+        nom       Varchar (50) NOT NULL ,
+        prenom    Varchar (50) NOT NULL ,
+        image     Varchar (200) NOT NULL
+	,CONSTRAINT Acteur_PK PRIMARY KEY (id_acteur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Réalisateur
+#------------------------------------------------------------
+
+CREATE TABLE Realisateur(
+        id_realisateur Int  Auto_increment  NOT NULL ,
+        nom            Varchar (50) NOT NULL ,
+        prenom         Varchar (50) NOT NULL ,
+        Image          Varchar (200) NOT NULL
+	,CONSTRAINT Realisateur_PK PRIMARY KEY (id_realisateur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Producteur
+#------------------------------------------------------------
+
+CREATE TABLE Producteur(
+        id_producteur Int  Auto_increment  NOT NULL ,
+        Nom           Varchar (50) NOT NULL
+	,CONSTRAINT Producteur_PK PRIMARY KEY (id_producteur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Genre
+#------------------------------------------------------------
+
+CREATE TABLE Genre(
+        id_genre Int  Auto_increment  NOT NULL ,
+        nom      Varchar (50) NOT NULL
+	,CONSTRAINT Genre_PK PRIMARY KEY (id_genre)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: typeUser
+#------------------------------------------------------------
+
+CREATE TABLE typeUser(
+        id_typeuser Int  Auto_increment  NOT NULL ,
+        type        Varchar (50) NOT NULL
+	,CONSTRAINT typeUser_PK PRIMARY KEY (id_typeuser)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: User
+#------------------------------------------------------------
+
+CREATE TABLE User(
+        id_user     Int  Auto_increment  NOT NULL ,
+        pseudo      Varchar (5) NOT NULL ,
+        nom         Varchar (50) NOT NULL ,
+        prenom      Varchar (50) NOT NULL ,
+        mdp         Varchar (50) NOT NULL ,
+        mail        Varchar (50) NOT NULL ,
+        id_typeuser Int NOT NULL
+	,CONSTRAINT User_PK PRIMARY KEY (id_user)
+
+	,CONSTRAINT User_typeUser_FK FOREIGN KEY (id_typeuser) REFERENCES typeUser(id_typeuser)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Image
+#------------------------------------------------------------
+
+CREATE TABLE Image(
+        id_affiche Int  Auto_increment  NOT NULL ,
+        affiche    Varchar (50) NOT NULL ,
+        id_film    Int NOT NULL
+	,CONSTRAINT Image_PK PRIMARY KEY (id_affiche)
+
+	,CONSTRAINT Image_Film_FK FOREIGN KEY (id_film) REFERENCES Film(id_film)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Réaliser
+#------------------------------------------------------------
+
+CREATE TABLE Realiser(
+        id_realisateur Int NOT NULL ,
+        id_film        Int NOT NULL
+	,CONSTRAINT Realiser_PK PRIMARY KEY (id_realisateur,id_film)
+
+	,CONSTRAINT Realiser_Realisateur_FK FOREIGN KEY (id_realisateur) REFERENCES Realisateur(id_realisateur)
+	,CONSTRAINT Realiser_Film0_FK FOREIGN KEY (id_film) REFERENCES Film(id_film)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Produire
+#------------------------------------------------------------
+
+CREATE TABLE Produire(
+        id_producteur Int NOT NULL ,
+        id_film       Int NOT NULL
+	,CONSTRAINT Produire_PK PRIMARY KEY (id_producteur,id_film)
+
+	,CONSTRAINT Produire_Producteur_FK FOREIGN KEY (id_producteur) REFERENCES Producteur(id_producteur)
+	,CONSTRAINT Produire_Film0_FK FOREIGN KEY (id_film) REFERENCES Film(id_film)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Jouer
+#------------------------------------------------------------
+
+CREATE TABLE Jouer(
+        id_film   Int NOT NULL ,
+        id_acteur Int NOT NULL
+	,CONSTRAINT Jouer_PK PRIMARY KEY (id_film,id_acteur)
+
+	,CONSTRAINT Jouer_Film_FK FOREIGN KEY (id_film) REFERENCES Film(id_film)
+	,CONSTRAINT Jouer_Acteur0_FK FOREIGN KEY (id_acteur) REFERENCES Acteur(id_acteur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: genrer
+#------------------------------------------------------------
+
+CREATE TABLE genrer(
+        id_genre Int NOT NULL ,
+        id_film  Int NOT NULL
+	,CONSTRAINT genrer_PK PRIMARY KEY (id_genre,id_film)
+
+	,CONSTRAINT genrer_Genre_FK FOREIGN KEY (id_genre) REFERENCES Genre(id_genre)
+	,CONSTRAINT genrer_Film0_FK FOREIGN KEY (id_film) REFERENCES Film(id_film)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: favoris
+#------------------------------------------------------------
+
+CREATE TABLE favoris(
+        id_film Int NOT NULL ,
+        id_user Int NOT NULL
+	,CONSTRAINT favoris_PK PRIMARY KEY (id_film,id_user)
+
+	,CONSTRAINT favoris_Film_FK FOREIGN KEY (id_film) REFERENCES Film(id_film)
+	,CONSTRAINT favoris_User0_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+)ENGINE=InnoDB;
+
