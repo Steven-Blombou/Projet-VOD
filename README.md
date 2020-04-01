@@ -2,7 +2,9 @@
 Site Fictif Allo Simplon 
 Projet fil rouge (evaluation des competences 1-2-3-5-6-7 )
 
-Competences choisis : 5-6-7
+Competences choisis : 5-6-7 puis Competences 1-2-3 si le tps le permet
+
+Focus sur le back puis les bonus si on a le tps puis le front
 
 Site Actuel : http://blombou.simplon-charleville.fr/allo_simplon (pour les test entrer test)
 
