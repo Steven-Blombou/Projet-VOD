@@ -1,15 +1,8 @@
 <?php
 session_start();
-include 'include/actualisation_session.php'; // Actualisation session
+include ('include/actualisation_session.php'); // Actualisation session
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
-
-// Interdire l'accès à la page si pas connecté
-// if ( empty($_SESSION["username"]) ) {
-//     header('Location:connexion.php');
-//     exit();
-// }
-
 
 // connexion à la base de données
 include('include/connectBDD.php');

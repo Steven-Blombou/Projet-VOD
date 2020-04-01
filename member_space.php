@@ -1,10 +1,10 @@
 <?php
 session_start();
-include 'include/actualisation_session.php'; // Actualisation session
-include 'include/blocagepage_public.php';
+include ('include/actualisation_session.php'); // Actualisation session
+include ('include/blocagepage_public.php'); // J interdis l acces a la page  si pas connecté
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
-include('include/connectBDD.php');
+include ('include/connectBDD.php');
 
 
  ?>
@@ -146,7 +146,7 @@ if(isset($_SESSION['username']) AND $recupinfo['id_type'] == $_SESSION['typeuser
 </div>
 
 <?php
-include 'include/footer.php'; 
+include 'include/footer.php';
 ?>
 
 </body>

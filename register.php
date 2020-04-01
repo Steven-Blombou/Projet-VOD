@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'include/actualisation_session.php'; // Actualisation session
+include ('include/actualisation_session.php'); // Actualisation session
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -58,7 +58,7 @@ include('include/connectBDD.php');
                         'id_type_user'=> 3,
                       ));
                       $message = "Votre compte a bien etais crée"; // ((A revoir ne s affiche pas et pas de redirection))
-                      header('Location: connexion.php'); // Nom d'utilisateur et mot de passe correctes dc redirection
+                      header('Location: /allo_simplon/connexion.php'); // Nom d'utilisateur et mot de passe correctes dc redirection
 
                    }
                    else {

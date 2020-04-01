@@ -9,21 +9,37 @@
   $date_sortie = !empty($_POST['date_sortie']) ? $_POST['date_sortie'] : NULL;
   $trailer = !empty($_POST['trailer']) ? $_POST['trailer'] : NULL;
 
+  if(empty($titre)){
+          $bool=false;
+          echo "Erreur lors de l'ajout du film";
+          retour();
+      }else if(empty($synopsis)){
+          echo "Erreur lors de l'ajout du film";
+          retour();
+      }else if(empty($note)){
+          echo "Erreur lors de l'ajout du film";
+          retour();
+      }else if(empty($duree)){
+          echo "Erreur lors de l'ajout du film";
+          retour();
+      }else if(empty($date_sortie)){
+          echo "Erreur lors de l'ajout du film";
+          retour();
+        }else if(empty($trailer)){
+            echo "Erreur lors de l'ajout du film";
+            retour();
+      }else{
 
+  $sql = $bdd->prepare ("INSERT INTO Film SET (titre, synopsis, note, duree, date_sortie, trailer)
+                        VALUES ( ?, ?, ?, ?, ?, ?)");
 
-  $sql = $bdd->prepare ("INSERT INTO Film (titre, Synopsis, note, duree, date_sortie, trailer)
-                        VALUES ( :titre, :synopsis, :note, :duree, :date_sortie, :trailer)");
+  $req->execute([$titre, $synopsis, $note, $date_sortie, $duree, $trailer]);
+  echo "L ajout de film est effectuer";
+  retour();
+}
 
-  $sql->execute(array(
-      'titre' => $titre,
-      'synopsis' => $synopsis,
-      'note' => $note,
-      'duree' => $duree,
-      'date_sortie' => $date_sortie,
-      'trailer' => $trailer
-  ));
+function retour(){
+      echo '<a href="admin.php">retour</a>';
+  }
 
-  $sql-> closeCursor();
-  header('location:admin.php');
-  
 ?>

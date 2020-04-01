@@ -6,17 +6,29 @@
   $prenom_acteur = !empty($_POST['prenom_acteur']) ? $_POST['prenom_acteur'] : NULL;
   $born_acteur = !empty($_POST['born_acteur']) ? $_POST['born_acteur'] : NULL;
 
+  if(empty($nom_acteur)){
+        echo "Erreur ";
+        retour();
+    }else if(empty($prenom_acteur)){
+        echo "Erreur ";
+        retour();
+    }else if(empty($born_acteur)){
+        echo "Erreur ";
+        retour();
+    }else{
 
-  $sql = $bdd->prepare ("INSERT INTO Acteur (nom_acteur, prenom_acteur,born_acteur)
-                        VALUES (:nom_acteur, :prenom_acteur, :born_acteur)");
 
-  $sql->execute(array(
-      'nom_acteur' => $nom_acteur,
-      'prenom_acteur' => $prenom_acteur,
-      'born_acteur' => $born_acteur
-      ));
+  $sql = $bdd->prepare ("INSERT INTO Acteur SET (nom_acteur, prenom_real,born_acteur)
+                        VALUES (?, ?, ?)");
+  $req->execute([$nom_acteur,$prenom_acteur,$born_acteur]);
+  echo "L'acteur a bien été ajouté";
+        retour();
+    }
 
-  $sql-> closeCursor();
-  header('location:admin.php');
+
+    function retour(){
+            echo '<a href="admin.php">retour</a>';
+        }
+
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 session_start(); // Lancement session
-include 'include/actualisation_session.php'; // Actualisation session
+include ('include/actualisation_session.php'); // Actualisation session
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php'; // Changement de theme
  ?>
@@ -64,6 +64,9 @@ require_once 'styleswitcher.php'; // Changement de theme
 </head>
 
 <body>
+
+
+
     <?php
     include 'include/nav.php';
     include 'include/slider.php';

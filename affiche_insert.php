@@ -8,17 +8,14 @@
   $image_acteur = !empty($_POST['image_acteur']) ? $_POST['image_acteur'] : NULL;
 
 
-  $sql = $bdd->prepare ("INSERT INTO Image (affiche_film, image_real, image_product, image_acteur)
-                        VALUES (:affiche_film, :image_real,  :image_product, :image_acteur)");
+  $sql = $bdd->prepare ("INSERT INTO Image  SET (affiche_film, image_real, image_product, image_acteur)
+                        VALUES (?, ?,  ?, ?)");
+  $req->execute([$affiche_film, $image_real, $image_product, $image_acteur,]);
+  echo "L' ajout d'images est effectuées";
+  retour();
+  }
 
-  $sql->execute(array(
-      'affiche_film' => $affiche_film,
-      'image_real' => $image_real,
-      'image_product' => $image_product,
-      'image_acteur' => $image_acteur
-      ));
-
-  $sql-> closeCursor();
-  header('location:admin.php');
-
+  function retour(){
+          echo '<a href="admin.php">retour</a>';
+      }
 ?>
