@@ -13,7 +13,7 @@
 
 <?php
 // Requete dde recherche des affiche de film
-$req = $bdd ->prepare("SELECT affiche_film, id_film FROM Image");
+$req = $bdd ->prepare("SELECT affiche_film, id_film FROM Image WHERE id_affiche <= 5 ORDER BY id_affiche;");
 $req ->execute();
 // Boucle pour afficher les resultats
 while($donnees = $req->fetch()) {

@@ -11,7 +11,7 @@
   $subject = "New message";
 
   mail($to,$subject, $user_message,$headers);
-
-  header('location:index.php');
+  echo "Le mail a bien éte envoyé";
+  echo '<a href="index.php"> Retourner a Acceuil</a>';
 
 ?>

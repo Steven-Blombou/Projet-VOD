@@ -32,6 +32,7 @@
 
   $sql = $bdd->prepare ("INSERT INTO Film SET (titre, synopsis, note, duree, date_sortie, trailer)
                         VALUES ( ?, ?, ?, ?, ?, ?)");
+    // ou $req=$bdd->prepare("INSERT INTO Film SET titre = ?, synopsis = ?, note= ?, duree = ?, datesortie = ?");
 
   $req->execute([$titre, $synopsis, $note, $date_sortie, $duree, $trailer]);
   echo "L ajout de film est effectuer";

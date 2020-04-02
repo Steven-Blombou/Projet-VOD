@@ -1,15 +1,18 @@
 <!--Liste acteurs-->
 <?php
+function transpose($array) {
+    array_unshift($array, null);
+    return call_user_func_array('array_map', $array);
+}
+?>
+
+<?php
 include ('connectBDD.php');
 $film=$_GET['id'];
 // Id acteur
   $req=$bdd->prepare("SELECT id_acteur FROM Jouer WHERE id_film=$film");
   $req->execute();
   $id_acteur=$req->fetch();
-
-
-
-
 
 
  ?>

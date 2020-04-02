@@ -8,7 +8,7 @@ require_once 'styleswitcher.php';
 include('include/connectBDD.php');
 
 // Je recherche les derniers membres inscrit
-	$user = $bdd->prepare('SELECT * FROM User ORDER BY id_user DESC');
+	// $user = $bdd->prepare('SELECT * FROM User ORDER BY id_user DESC');
 
  ?>
 
@@ -53,18 +53,11 @@ include('include/connectBDD.php');
  include 'include/nav.php';
 ?>
 
-  <div id="container">
-    <ul>
-<?php
-  while($membre = $user->fetch()) { // J affiche tous les membres
-?>
-  <li><?= $membre['id_user'] ?> : <?= $membre['pseudo_user'] ?></li>
-<?php
-  }
-?>
-  </ul>
 
-</div>
+
+
+
+
 
 <!-- Pour ajouter un film -->
 
@@ -106,10 +99,26 @@ include('include/connectBDD.php');
               <input class="login" type="text" id="trailer" name="trailer" placeholder="Iframe YouTube">
         </div>
             <div class="button">
-               <button class="button_form" type="submit">Envoyer</button>
+							<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
            </div>
    </form>
  </div>
+
+
+<!-- Liste des films -->
+ <div align="center" id="Films" class="tabcontent">
+         <h2 class="contact">Liste des film deja present</h2>
+				 <?php
+				 $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+				 $req->execute();
+				 while ( $donnees = $req->fetch() ) {
+				 	 ?>
+				 	<option  value="<?= $donnees['id_film']; ?>"> Nom du film : <?= $donnees['titre']; ?> | id du film : <?= $donnees['id_film']; ?> </option>
+				 <?php
+				 }
+				 ?>
+  </div>
+
 
 <!-- Ajout des images -->
 
@@ -137,16 +146,12 @@ include('include/connectBDD.php');
                     <label class="contact" for="image">Image Acteur</label>
                 </div>
                  <input class="login" type="text" id="image_acteur" name="image_acteur" placeholder="Images_real">
-
-
         </div>
             <div class="button">
-               <button class="button_form" type="submit">Envoyer</button>
+							<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
            </div>
    </form>
  </div>
-
-
 
 <!-- Ajout de Producteur -->
 
@@ -172,9 +177,42 @@ include('include/connectBDD.php');
 
         </div>
             <div class="button">
-                <button class="button_form" type="submit">Envoyer</button>
+							<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
             </div>
     </form>
+</div>
+
+<!-- Liaison Film Product -->
+
+<div align="center" class="container">
+  <form id="contact" action="Liaison_film_producteur.php" method="post">
+    <h3><center>Liaison Film Product</center></h3>
+    <select  name="id_film" tabindex="8" require >
+            <?php
+                $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+                $req->execute();
+                while ( $donnees = $req->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_film']; ?>"> Nom du film : <?= $donnees['titre']; ?> | id du film : <?= $donnees['id_film']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <select  name="id_prod" tabindex="8" require >
+            <?php
+                $req2 = $bdd->prepare(" SELECT id_producteur, nom_product, prenom_product FROM Producteur");
+                $req2->execute();
+                while ( $donnees = $req2->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_producteur']; ?>"> Nom du producteur : <?= $donnees['nom_product']; ?> | prenom du producteur : <?= $donnees['prenom_product']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
+    </fieldset>
+  </form>
 </div>
 
 <!-- Ajut de Realisateur  -->
@@ -200,11 +238,45 @@ include('include/connectBDD.php');
              <input class="login" type="text" id="born_real" name="born_real" placeholder="Date">
 
               <div class="button">
-                <button class="button_form" type="submit">Envoyer</button>
+								<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
               </div>
            </div>
    </form>
 </div>
+
+<!-- Liasion Film Realisateur -->
+<div align="center" class="container">
+  <form id="contact" action="liaison_film_real.php" method="post">
+    <h3><center>Liasion Film Real</center></h3>
+    <select  name="id_film" tabindex="8" require >
+            <?php
+                $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+                $req->execute();
+                while ( $donnees = $req->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_film']; ?>"> Nom du Film : <?= $donnees['titre']; ?> | id du cinéma : <?= $donnees['id_film']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <select  name="idreal" tabindex="8" require >
+            <?php
+                $req2 = $bdd->prepare(" SELECT id_realisateur, nom_real, prenom_real FROM Realisateur");
+                $req2->execute();
+
+                while ( $donnees = $req2->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_realisateur']; ?>"> Nom realisateur : <?= $donnees['nom_real']; ?> | prenom realisateur : <?= $donnees['prenom_real']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
+    </fieldset>
+  </form>
+</div>
+
 
 <!-- Ajout d'acteur -->
 
@@ -229,10 +301,66 @@ include('include/connectBDD.php');
              <input class="login" type="text" id="born_acteur" name="born_acteur" placeholder="Date">
 
               <div class="button">
-                <button class="button_form" type="submit">Envoyer</button>
+								<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
               </div>
            </div>
    </form>
+</div>
+
+<div align="center" class="container">
+  <form id="contact" action="liason_film_acteur.php" method="post">
+    <h3><center>Liaison Film Acteur</center></h3>
+    <select  name="id_film" tabindex="8" require >
+            <?php
+                $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+                $req->execute();
+                while ( $donnees = $req->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_film']; ?>"> Nom du Film : <?= $donnees['titre']; ?> | id du film : <?= $donnees['id_film']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <select  name="id_acteur" tabindex="8" require >
+            <?php
+                $req2 = $bdd->prepare(" SELECT id_acteur, nom_acteur, prenom_acteur FROM Acteur");
+                $req2->execute();
+
+                while ( $donnees = $req2->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_acteur']; ?>"> Nom de l'acteur : <?= $donnees['nom_acteur']; ?> | prenom de l'acteur : <?= $donnees['prenom_acteur']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
+    </fieldset>
+  </form>
+</div>
+
+<!-- Supression de Film -->
+<div align="center" class="container">
+  <form id="contact" action="delete_film.php" method="post">
+
+    <h3><center>Supression de Film</center></h3>
+    <fieldset>
+           <select  name="delete_film" tabindex="8" require >
+            <?php
+                $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+                $req->execute();
+                while ( $donnees = $req->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_film']; ?>"> Nom du Film : <?= $donnees['titre']; ?> | id du Film : <?= $donnees['id_film']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">suprimer</button>
+    </fieldset>
+  </form>
 </div>
 
 <div class="vide">
