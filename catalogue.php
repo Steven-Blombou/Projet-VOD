@@ -46,11 +46,11 @@ require_once 'styleswitcher.php'; // Changement de theme
 <body>
 
     <?php
-    include 'include/nav.php';
-    include 'include/filtres.php';
-    include 'include/films.php';
-    include 'include/paracata.php';
-    include 'include/footer.php';
+	    include 'include/nav.php';
+      include 'include/filtres.php';
+      include 'include/films.php';
+      include 'include/paracata.php';
+      include 'include/footer.php';
     ?>
 </body>
 

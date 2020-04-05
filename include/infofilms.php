@@ -14,6 +14,8 @@ $duree=$requete_duree->fetch();
 $requete_date_sortie=$bdd->prepare("SELECT date_sortie FROM Film WHERE id_film=$film");
 $requete_date_sortie->execute();
 $date_sortie=$requete_date_sortie->fetch();
+
+///$bdd->closeCursor(); // fermer la connexion
  ?>
 
 <div class="rond-titre">Résumé</div>

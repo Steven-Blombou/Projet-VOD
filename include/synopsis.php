@@ -11,6 +11,8 @@ $requete_synopis=$bdd->prepare("SELECT synopsis, titre FROM Film WHERE id_film=$
 $requete_synopis->execute();
 $synopsis=$requete_synopis->fetch();
 
+///$bdd->closeCursor(); // fermer la connexion
+
  ?>
 
 <h2 class="page-film"><?php echo $synopsis['titre']; ?></h2>

@@ -1,13 +1,18 @@
 <?php
     include ('connectBDD.php');
 
-    $idAct=$_POST['id_acteur'];
-    $idFilm=$_POST['id_film'];
+    $id_acteur=$_POST['id_acteur'];
+    $id_film=$_POST['id_film'];
 
-    $req=$bdd->prepare("INSERT INTO Jouer SET id_acteur=? , id_film=?");
-    $req->execute([$id_acteur,$id_Film]);
+    $req=$bdd->prepare("INSERT INTO Jouer (id_acteur, id_film) VALUES ( :id_acteur, :id_film)");
+    $req->execute(array(
+      'id_acteur' => $id_acteur,
+      'id_film' => $id_film
+    ));
 
     echo " l'acteur a bien éte lié";
+
+    //$req-> closeCursor();
     echo '<a href="../include/admin.php">retour</a>';
 
 ?>

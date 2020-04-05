@@ -3,10 +3,6 @@ session_start(); // lancement session
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php'; // Changement de theme
  ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,9 +30,6 @@ require_once 'styleswitcher.php'; // Changement de theme
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
 
 </head>
 
@@ -99,10 +92,7 @@ include 'include/nav.php'; ?>
                     echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>"; // si oui affichage du message d erreur en rouge
             }
             ?>
-
-        </form>
-    </div>
-
+			
             <?php
             if(isset($_GET['message'])){  //je verifie si il ya des erreurs
                 $mess = $_GET['message'];
@@ -113,6 +103,7 @@ include 'include/nav.php'; ?>
 
         </form>
     </div>
+
 <?php
 // $sql-> closeCursor();
 //   header('location:../index.php');

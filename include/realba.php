@@ -27,6 +27,8 @@
       $requete_trailer=$bdd->prepare("SELECT trailer FROM Film WHERE id_film=$film");
       $requete_trailer->execute();
       $trailer=$requete_trailer->fetch();
+
+      ///$bdd->closeCursor(); // fermer la connexion
      ?>
 
  <div class="real-real">Réalisateur</div>

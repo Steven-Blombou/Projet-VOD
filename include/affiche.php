@@ -25,6 +25,7 @@ while($donnees = $req->fetch()) {
 
 <?php
 }
+///$bdd->closeCursor(); // fermer la connexion
  ?>
 
  </div>

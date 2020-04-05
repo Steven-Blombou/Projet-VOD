@@ -18,14 +18,18 @@
     }else{
 
 
-  $sql = $bdd->prepare ("INSERT INTO Producteur SET (nom_product, prenom_product,born_product)
-                        VALUES (?, ?, ?)");
-  $req->execute([$nom_product,$prenom_product,$born_product]);
+  $req = $bdd->prepare ("INSERT INTO Producteur (nom_product, prenom_product, born_product)
+                        VALUES ( :nom_product, :prenom_product, :born_product)");
+  $req->execute(array(
+    'nom_product' => $nom_prduct,
+    'prenom_product' => $prenom_product,
+    'born_product' => $born_product
+  ));
   echo "Le producteur a bien été ajouté";
         retour();
     }
 
-
+//$req-> closeCursor();
     function retour(){
             echo '<a href="admin.php">retour</a>';
         }

@@ -10,8 +10,22 @@
             <div>
                 <ul>
                     <Li><a href="catalogue.php">Films</a></Li>
-                    <Li><a href="connexion.php">Connexion</a></Li>
+                    <?php
+                    if (isset($_SESSION['username']) && isset($_SESSION['typeuser'])) // Je verifie l existence des valeurs de session username et type par securité
+                    {
+                    echo ("<li>");
+                    echo ("<a href='member_space.php'>" . "bonjour" . "&nbsp" . $_SESSION['username'] . "</a>"); // "&nbsp"=espace en php  J etablie la connexion et j affiche le message
+                    echo ('<a href="include/sedeconnecter.php"> se déconnecter </a>'); //  J inclus la possibilité de se deconnecter
+                    echo ("</li>");
+                     }
+                    else
+                    {
+                    ?>
+                    <li><a href="connexion.php">Connexion</a></li>
                     <li><a href="register.php">S'enregistrer</a></li>
+                    <?php
+                    }
+                    ?>
                         <div class="liens-couleurs">
 
                     <li>
@@ -31,7 +45,7 @@
 
 
 
-                    <form action="">
+                    <form action="search_bar_verif.php">
                         <input type="text" placeholder="" name="search">
                         <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                     </form>

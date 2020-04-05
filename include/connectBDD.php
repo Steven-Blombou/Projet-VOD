@@ -11,6 +11,4 @@ try   {
   // En cas d'erreur, un message s'affiche et tout s'arrête
         die('Erreur : '.$e->getMessage());
 }
-
-
 ?>
