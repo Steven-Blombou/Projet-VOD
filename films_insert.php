@@ -30,28 +30,26 @@
             retour();
       }else{
 
-  $req = $bdd->prepare ("INSERT INTO Film (titre, synopsis, note, duree, date_sortie, trailer)
-                        VALUES ( :titre, :synopsys, :note, :duree, :date_sortie, :trailer)");
+  $sql = $bdd->prepare ("INSERT INTO Film (titre, synopsis, note, duree, date_sortie, trailer)
+                        VALUES (:titre, :synopsis, :note, :duree, :date_sortie, :trailer)");
     // ou $req=$bdd->prepare("INSERT INTO Film SET titre = ?, synopsis = ?, note= ?, duree = ?, datesortie = ?");
 
   $req->execute(array(
-    'titre' => $titre,
-    'synopsis' => $synopsis,
-    'note' => $note,
-    'duree' => $duree,
-    'date_sortie' => $date_sortie,
-    'trailer' => $trailer
-    ));
-
-
+    'titre'=> $titre,
+    'synopsis'=> $synopsis,
+    'note'=> $note,
+    'date_sortie'=> $date_sortie,
+    'duree'=> $duree,
+    'trailer'=> $trailer
+  ));
   echo "L ajout de film est effectuer";
   retour();
 }
-
-//$req-> closeCursor();
 
 function retour(){
       echo '<a href="admin.php">retour</a>';
   }
 
+  // $sql-> closeCursor();
+  //   header('location: admin.php');
 ?>

@@ -18,21 +18,22 @@
     }else{
 
 
-  $req = $bdd->prepare ("INSERT INTO Acteur (nom_acteur, prenom_acteur, born_acteur)
-                        VALUES (:nom_acteur,:prenom_acteur, :born_acteur)");
+  $sql = $bdd->prepare ("INSERT INTO Acteur (nom_acteur, prenom_acteur, born_acteur)
+                        VALUES (:nom_acteur, :prenom_acteur, :born_acteur)");
   $req->execute(array(
-      'nom_acteur' => $nom_acteur,
-      'prenom_acteur' => $prenom_acteur,
-      'born_acteur' => $born_acteur
-      ));
-
+    'nom_acteur'=> $nom_acteur,
+    'prenom_acteur'=> $prenom_acteur,
+    'born_acteur'=> $born_acteur
+  ));
   echo "L'acteur a bien été ajouté";
         retour();
     }
-// $req-> closeCursor();
+
 
     function retour(){
             echo '<a href="admin.php">retour</a>';
         }
+        // $sql-> closeCursor();
+        //   header('location: admin.php');
 
 ?>

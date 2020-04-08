@@ -22,22 +22,21 @@
 
 
   $req = $bdd->prepare ("INSERT INTO Realisateur (nom_real, prenom_real, born_real)
-                        VALUES ( :nom_real, :prenom_real, :born_real)");
+                        VALUES (:nom_real, :prenom_real, :born_real)");
   $req->execute(array(
-    'nom_real' => $nom_real,
-    'prenom_real' => $prenom_real,
-    'born_real' => $born_real
-  ));
-
+      'nom_real'=> $nom_real,
+      'prenom_real'=> $prenom_real,
+      'born_real'=> $born_real
+    ));
   echo "Le realisateur a bien été ajouté";
         retour();
     }
 
-
-//$req-> closeCursor();
     function retour() {
             echo '<a href="admin.php">retour</a>';
         }
 
+        // $sql-> closeCursor();
+        //   header('location: admin.php');
 
 ?>

@@ -13,33 +13,30 @@ $film=$_GET['id'];
 
 <section class="liste-acteurs">
 
+  <?php
+  // Image acteur
+    $requete_image_acteur=$bdd->prepare("SELECT image_acteur FROM Image WHERE id_film=$film");
+    $requete_image_acteur->execute();
+    $requete_nom_acteur=$bdd->prepare("SELECT nom_acteur, prenom_acteur, id_acteur FROM Acteur NATURAL JOIN Jouer WHERE id_film=$film");
+    $requete_nom_acteur->execute();
+    while($donnees = $requete_image_acteur->fetch() AND ($donnees1 = $requete_nom_acteur->fetch())) {
+    //var_dump($image_acteur['image_acteur']);
+
+   ?>
 
  <div class="acteur">
-   <?php
-   // Image acteur
-     $requete_image_acteur=$bdd->prepare("SELECT image_acteur FROM Image WHERE id_film=$film");
-     $requete_image_acteur->execute();
-     while($donnees = $requete_image_acteur->fetch()) {
-     //var_dump($image_acteur['image_acteur']);
 
-    ?>
         <img class="img-acteur" src="<?php echo $donnees['image_acteur'];?>" alt="">
-        <?php
-        }
-         ?>
-        <?php
-        // Nom acteur
-          $requete_nom_acteur=$bdd->prepare("SELECT nom_acteur, prenom_acteur, id_acteur FROM Acteur NATURAL JOIN Jouer WHERE id_film=$film");
-          $requete_nom_acteur->execute();
-          while($donnees = $requete_nom_acteur->fetch()) {
-         ?>
-        <div><?php echo $donnees['nom_acteur']."&nbsp".$donnees['prenom_acteur'];?></div>
-  </div>
-        <?php
-        }
-        ///$bdd->closeCursor(); // fermer la connexion
-         ?>
 
+
+        <div><?php echo $donnees1['nom_acteur']."&nbsp".$donnees1['prenom_acteur'];?></div>
+
+  </div>
+
+  <?php
+  }
+  ///$bdd->closeCursor(); // fermer la connexion
+   ?>
 
 
 </section>
