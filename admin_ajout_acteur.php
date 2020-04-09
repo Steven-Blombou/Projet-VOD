@@ -1,7 +1,6 @@
 <?php
 session_start();
 include ('include/actualisation_session.php'); // Actualisation session
-include ('include/blocagepage_public.php');
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -54,64 +53,38 @@ include('include/connectBDD.php');
  include 'include/nav.php';
 ?>
 
-<div align='center' class="container">
-  <h2>Panneau d administration</h2>
-  <br>
-  <br>
-  <div class="row">
-    <table>
-      <tr>
-        <td>
-          <a href="admin_ajout_film.php">Ajouter Film</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_image.php">Ajouter image</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_real.php">Ajouter real</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_product.php">Ajouter product</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_acteur.php">Ajout acteur</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_real.php">Liaison film/real</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_product.php">Liaison Film/product</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_acteur.php">Liaison Film/acteur</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_delete_film.php">Supprimer Film</a>
-        </td>
-      </tr>
-    </table>
+<!-- Ajout d'acteur -->
 
-  </div>
+<div align="center" id="Acteur" class="tabcontent">
+   <form class="form-contact" action="traitement/acteur_insert.php" method="post">
+       <h2 class="contact">Ajout d'acteur</h2>
 
+       <div class="info_form">
+           <div class="infos">
+               <label class="contact" for="Name">Nom</label>
+           </div>
+            <input class="login" type="text" id="nom_acteur" name="nom_acteur" placeholder="Nom">
+
+           <div class="infos">
+               <label class="contact" for="Prenom">Prénom</label>
+           </div>
+            <input class="login" type="text" id="prenom_acteur" name="prenom_acteur" placeholder="Prénom">
+
+            <div class="infos">
+                <label class="contact" for="Date">Date</label>
+            </div>
+             <input class="login" type="date" id="born_acteur" name="born_acteur" placeholder="Date">
+
+              <div class="button">
+								<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
+              </div>
+           </div>
+   </form>
 </div>
 
+<div class="vide">
 
+</div>
 
 <?php
 include 'include/footer.php';

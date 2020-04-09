@@ -44,7 +44,7 @@ include 'include/nav.php'; ?>
     <div id="container">
 
 
-        <form action="verif.php" method="POST">
+        <form action="traitement/verif.php" method="POST">
           <br>
           <br>
             <h2>Connexion</h2>
@@ -92,12 +92,12 @@ include 'include/nav.php'; ?>
                     echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>"; // si oui affichage du message d erreur en rouge
             }
             ?>
-			
+
             <?php
             if(isset($_GET['message'])){  //je verifie si il ya des erreurs
                 $mess = $_GET['message'];
                 if($mess==1)
-                    echo "<p style='color:red'>Votre compte a bien était créé</p>"; // si oui affichage du message d erreur en rouge
+                    echo "<p style='color:green'>Votre compte a bien était créé</p>"; // si oui affichage du message d erreur en rouge
             }
             ?>
 

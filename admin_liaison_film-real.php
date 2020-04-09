@@ -1,7 +1,6 @@
 <?php
 session_start();
 include ('include/actualisation_session.php'); // Actualisation session
-include ('include/blocagepage_public.php');
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -54,64 +53,42 @@ include('include/connectBDD.php');
  include 'include/nav.php';
 ?>
 
-<div align='center' class="container">
-  <h2>Panneau d administration</h2>
-  <br>
-  <br>
-  <div class="row">
-    <table>
-      <tr>
-        <td>
-          <a href="admin_ajout_film.php">Ajouter Film</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_image.php">Ajouter image</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_real.php">Ajouter real</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_product.php">Ajouter product</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_acteur.php">Ajout acteur</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_real.php">Liaison film/real</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_product.php">Liaison Film/product</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_acteur.php">Liaison Film/acteur</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_delete_film.php">Supprimer Film</a>
-        </td>
-      </tr>
-    </table>
+<!-- Liasion Film Realisateur -->
+<div align="center" class="container">
+  <form id="contact" action="traitement/liaison_film_real.php" method="post">
+    <h2><center>Liaison Film Real</center></h2>
+    <select  name="id_film" tabindex="" require >
+            <?php
+                $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+                $req->execute();
+                while ( $donnees = $req->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_film']; ?>"> Nom du Film : <?= $donnees['titre']; ?> | id du film : <?= $donnees['id_film']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <select  name="idreal" tabindex="" require >
+            <?php
+                $req2 = $bdd->prepare(" SELECT id_realisateur, nom_real, prenom_real FROM Realisateur");
+                $req2->execute();
 
-  </div>
-
+                while ( $donnees = $req2->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_realisateur']; ?>"> Nom realisateur : <?= $donnees['nom_real']; ?> | prenom realisateur : <?= $donnees['prenom_real']; ?> | id du  realisateur : <?= $donnees['id_realisateur']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
+    </fieldset>
+  </form>
 </div>
 
+<div class="vide">
 
+</div>
 
 <?php
 include 'include/footer.php';

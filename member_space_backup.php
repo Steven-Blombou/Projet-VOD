@@ -12,6 +12,7 @@ include ('include/connectBDD.php');
 
  <?php
  // Affichage Info user
+/// $id_user = $_SESSION['username'] && $_SESSION['typeuser']; // Je verifie la session et definit la varaiable id_user
  $user_pseudo=$_SESSION['username'];
  $sql_user = "SELECT pseudo_user, nom_user, prenom_user, mail_username, password_user FROM User WHERE pseudo_user='$user_pseudo'"; // Je recherche les info ds la table user
  $requete_user = $bdd->prepare($sql_user);
@@ -62,8 +63,15 @@ include ('include/connectBDD.php');
 <h2 class="axeltitreh2">Profil de <?php echo  ( "&nbsp" . $_SESSION['username'] . "</a>");?>,</h2> <!-- J affiche ce message -->
 
 
+<?php
+// if (isset($typeuser['type'] === "admin")) {
+  ?>
+
     <!-- <p style='color:red'>Vous êtes un  admin<br><a href="admin.php">ACCEDER AU PANNEAU ADMIN</a></p> -->
 
+<?php
+  // }
+ ?>
  <br>
 
 <h2>Information de Profil :</h2>
@@ -123,21 +131,17 @@ include ('include/connectBDD.php');
             </td> -->
         </tr>
     </table>
-
-
-<br />
-<a href="traitement/edit_member.php">Editer mon profil</a>
-<br>
 <?php
-if(	$_SESSION['typeuser']==1){
+if(isset($_SESSION['username']) AND $recupinfo['id_type'] == $_SESSION['typeuser']) {
+?>
 
- ?>
- <br>
-<a href="admin.php">ACCEDER AU PANNEAU ADMIN</a>
 <?php
 }
  ?>
+<br />
+<a href="edit_member_space.php">Editer mon profil</a>
 <br>
+<a href="admin.php">ACCEDER AU PANNEAU ADMIN</a>
 <br>
 <a href="include/sedeconnecter.php">Se déconnecter</a>
 

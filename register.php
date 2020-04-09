@@ -63,7 +63,7 @@ include 'include/nav.php'; ?>
   <!-- zone de connexion -->
 
     <div  id="container">
-        <form action="register_verif.php" method="POST">
+        <form action="traitement/register_verif.php" method="POST">
           <br>
           <br>
             <h2>Inscription</h2>

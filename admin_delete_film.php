@@ -1,7 +1,6 @@
 <?php
 session_start();
 include ('include/actualisation_session.php'); // Actualisation session
-include ('include/blocagepage_public.php');
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -54,64 +53,47 @@ include('include/connectBDD.php');
  include 'include/nav.php';
 ?>
 
-<div align='center' class="container">
-  <h2>Panneau d administration</h2>
-  <br>
-  <br>
-  <div class="row">
-    <table>
-      <tr>
-        <td>
-          <a href="admin_ajout_film.php">Ajouter Film</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_image.php">Ajouter image</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_real.php">Ajouter real</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_product.php">Ajouter product</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_ajout_acteur.php">Ajout acteur</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_real.php">Liaison film/real</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_product.php">Liaison Film/product</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_liaison_film_acteur.php">Liaison Film/acteur</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="admin_delete_film.php">Supprimer Film</a>
-        </td>
-      </tr>
-    </table>
-
+<!-- Liste des films -->
+ <div align="center" id="Films" class="tabcontent">
+         <h2 class="contact">Liste des films deja present</h2>
+         <?php
+         $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+         $req->execute();
+         while ( $donnees = $req->fetch() ) {
+           ?>
+          <option  value="<?= $donnees['id_film']; ?>"> Titre du film : <?= $donnees['titre']; ?> | id du film : <?= $donnees['id_film']; ?> </option>
+         <?php
+         }
+         ?>
   </div>
 
+<!-- Supression de Film -->
+<div align="center" class="container">
+  <form id="contact" action="traitement/delete_film.php" method="post">
+
+    <h2><center>Supression de Film</center></h2>
+    <fieldset>
+           <select  name="delete_film" tabindex="" require >
+            <?php
+                $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
+                $req->execute();
+                while ( $donnees = $req->fetch() ) {
+									?>
+                  <option  value="<?= $donnees['id_film']; ?>"> Nom du Film : <?= $donnees['titre']; ?> | id du Film : <?= $donnees['id_film']; ?> </option>
+              <?php
+						 }
+             ?>
+            </select>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">suprimer</button>
+    </fieldset>
+  </form>
 </div>
 
+<div class="vide">
 
+</div>
 
 <?php
 include 'include/footer.php';
