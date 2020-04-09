@@ -12,6 +12,12 @@ include ('../include/connectBDD.php');
  ?>
 
  <?php
+ $new_pseudo = $_POST['new_pseudo'];
+ $old_password_user = $_POST['old_password_user'];
+ $new_password_user = $_POST['new_password_user'];
+ $new_password2_user = $_POST['new_password2_user'];
+ $new_mail_username = $_POST['new_mail_username'];
+
  if(isset($_SESSION['username']) && isset($_SESSION['typeuser'])) { // Je verifie que la varible exite
     $req_user = $bdd->prepare("SELECT * FROM User WHERE id_user = ?"); // Je selectionne le  user ds la BDD
     $req_user->execute(array($_SESSION['username'])); // J affiche le resultat
@@ -57,7 +63,7 @@ include ('../include/connectBDD.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Space</title>
 
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../pol/index2.css">
 
 
@@ -83,7 +89,7 @@ include ('../include/connectBDD.php');
 
 <body>
 
-<?php include 'include/nav.php'; ?>
+<?php include '../include/nav.php'; ?>
 
 <div id="container">
 
@@ -93,48 +99,7 @@ include ('../include/connectBDD.php');
    <br>
    <h2>Edition de mon profil :</h2>
     <br>
-   <table>
-     <tr>
-       <td>
-         <label><b>Pseudo : <b></label>
-       </td>
-       <td>
-         <input type="text" name="new_pseudo" placeholer "Pseudo" value="<?php echo $pseudo_user['pseudo']; ?>" /> <!-- affiche la valeur de l ancien champs a modifier -->
-       </td>
-     </tr>
-     <tr>
-       <td>
-         <label><b> Ancien Password : <b></label>
-       </td>
-       <td>
-         <input type="password" name="old_password_user" placeholer "Password"/> <!-- Pas ici comme le passwword est hash -->
-       </td>
-     </tr>
-     <tr>
-       <td>
-         <label><b> Nouveau Password : <b></label>
-       </td>
-       <td>
-         <input type="password" name="new_password_user" placeholer "Password"/> <!-- Pas ici comme le passwword est hash -->
-       </td>
-     </tr>
-     <tr>
-       <td>
-         <label><b>Confirmation - Password : <b></label>
-       </td>
-       <td>
-         <input type="password" name="new_password2_user" placeholer "Confirmer mot de passe"/> <!-- Pas ici comme le passwword est hash -->
-       </td>
-     </tr>
-     <tr>
-       <td>
-         <label><b>Mail : <b></label>
-       </td>
-       <td>
-         <input type="mail" name="new_mail_username" placeholer "Mail" value="<?php echo $mail_username['mail']; ?>"/> <!-- affiche la valeur de l ancien champs a modifier -->
-       </td>
-     </tr>
-   </table>
+
  </form>
 
 <?php if(isset($message)) { // Si la variable message existe
@@ -142,18 +107,15 @@ include ('../include/connectBDD.php');
 }
 ?>
 
- <br>
-<input class="ok"type="submit" id='submit' value='Mettre à jour mon profil !'> <br>
-
 </div>
 
-<?php include 'include/footer.php'; ?>
+<?php include '../include/footer.php'; ?>
 
 </body>
 </html>
 <?php
 }
 else {
-   header("Location: connexion.php");
+   header("Location: ../connexion.php");
 }
 ?>

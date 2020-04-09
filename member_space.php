@@ -126,7 +126,7 @@ include ('include/connectBDD.php');
 
 
 <br />
-<a href="traitement/edit_member.php">Editer mon profil</a>
+<a href="edit_member_space.php">Editer mon profil</a>
 <br>
 <?php
 if(	$_SESSION['typeuser']==1){

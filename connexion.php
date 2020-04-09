@@ -51,6 +51,23 @@ include 'include/nav.php'; ?>
             <br>
             <br>
             <br>
+
+            <?php
+            if(isset($_GET['erreur'])){  //je verifie si il ya des erreurs
+                $err = $_GET['erreur'];
+                if($err==1 || $err==2 || $err==3)
+                    echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>"; // si oui affichage du message d erreur en rouge
+            }
+            ?>
+
+            <?php
+            if(isset($_GET['message'])){  //je verifie si il ya des erreurs
+                $mess = $_GET['message'];
+                if($mess==1)
+                    echo "<p style='color:green'>Votre compte a bien était créé</p>"; // si oui affichage du message d erreur en rouge
+            }
+            ?>
+
             <table>
               <td>
                 <tr>
@@ -85,21 +102,7 @@ include 'include/nav.php'; ?>
             <input class="ok"type="submit" id='submit' value='LOGIN'> <br>
 
 
-            <?php
-            if(isset($_GET['erreur'])){  //je verifie si il ya des erreurs
-                $err = $_GET['erreur'];
-                if($err==1 || $err==2 || $err==3)
-                    echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>"; // si oui affichage du message d erreur en rouge
-            }
-            ?>
 
-            <?php
-            if(isset($_GET['message'])){  //je verifie si il ya des erreurs
-                $mess = $_GET['message'];
-                if($mess==1)
-                    echo "<p style='color:green'>Votre compte a bien était créé</p>"; // si oui affichage du message d erreur en rouge
-            }
-            ?>
 
         </form>
     </div>

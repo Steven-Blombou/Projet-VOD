@@ -3,7 +3,7 @@ session_start();
 include ('include/actualisation_session.php'); // Actualisation session
 include ('include/blocagepage_public.php'); // J interdis l acces a la page  si pas connecté
 header('Content-type: text/html; charset=utf-8');
-require_once '../styleswitcher.php';
+require_once 'styleswitcher.php';
 
 
 // connexion à la base de données
@@ -52,7 +52,7 @@ include ('include/connectBDD.php');
 
 <h2 class="axeltitreh2">Bonjour <?php echo  ( "&nbsp" . $_SESSION['username'] . "</a>");?>,</h2> <!-- J affiche ce message -->
 
- <form action="edit_member.php" method="POST" >
+ <form action="traitement/edit_member.php" method="POST" >
    <br>
    <h2>Edition de mon profil :</h2>
     <br>
@@ -98,15 +98,17 @@ include ('include/connectBDD.php');
        </td>
      </tr>
    </table>
+
+   <?php if(isset($message)) { // Si la variable message existe
+     echo $message; // J affiche le message
+   }
+   ?>
+
+    <br>
+   <input class="ok"type="submit" id='submit' value='Mettre à jour mon profil !'> <br>
+
  </form>
 
-<?php if(isset($message)) { // Si la variable message existe
-  echo $message; // J affiche le message
-}
-?>
-
- <br>
-<input class="ok"type="submit" id='submit' value='Mettre à jour mon profil !'> <br>
 
 </div>
 
@@ -114,9 +116,5 @@ include ('include/connectBDD.php');
 
 </body>
 </html>
-<?php
 
-else {
-   header("Location: connexion.php");
-}
 ?>
