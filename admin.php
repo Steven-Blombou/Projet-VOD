@@ -62,6 +62,12 @@ include('include/connectBDD.php');
     <table>
       <tr>
         <td>
+          <a href="admin_user.php">Gestion Droit User</a>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <td>
           <a href="admin_ajout_film.php">Ajouter Film</a>
         </td>
       </tr>
@@ -108,6 +114,8 @@ include('include/connectBDD.php');
     </table>
 
   </div>
+  <br>
+  <br>
 
 </div>
 

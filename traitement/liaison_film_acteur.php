@@ -9,8 +9,9 @@
       'id_acteur'=> $id_acteur,
       'id_film'=> $id_film
     ));
-    echo " l'acteur a bien éte lié";
-    echo '<a href="../admin.php">retour</a>';
+    // echo " l'acteur a bien éte lié";
+    header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_liaison_film_acteur.php?message=1');
+    // echo '<a href="../admin.php">retour</a>';
 
 
     // $sql-> closeCursor();

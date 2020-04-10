@@ -9,8 +9,9 @@
       'id_producteur'=> $id_producteur,
       'id_film'=> $id_film
     ));
-    echo " Le producteur a bien éte lié";
-    echo '<a href="../admin.php">retour</a>';
+    // echo " Le producteur a bien éte lié";
+    header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_liaison_film_product.php?message=1');
+    // echo '<a href="../admin.php">retour</a>';
 
 
     // $sql-> closeCursor();

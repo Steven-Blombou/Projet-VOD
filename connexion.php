@@ -64,9 +64,12 @@ include 'include/nav.php'; ?>
             if(isset($_GET['message'])){  //je verifie si il ya des erreurs
                 $mess = $_GET['message'];
                 if($mess==1)
-                    echo "<p style='color:green'>Votre compte a bien était créé</p>"; // si oui affichage du message d erreur en rouge
+                    echo "<p style='color:green'>Votre compte a bien été créé</p>"; // si oui affichage du message d erreur en rouge
             }
             ?>
+
+            <br>
+            <br>
 
             <table>
               <td>

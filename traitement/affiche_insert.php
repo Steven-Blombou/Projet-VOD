@@ -17,8 +17,9 @@
     'image_product'=> $image_product,
     'image_acteur'=> $image_acteur
   ));
-  echo "L' ajout d'images est effectuées";
-  retour();
+  // echo "L' ajout d'images est effectuées";
+  header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_image.php?message=1');
+  // retour();
 
   function retour(){
           echo '<a href="../admin.php">retour</a>';

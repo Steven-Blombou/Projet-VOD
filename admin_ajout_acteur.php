@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('include/actualisation_session.php'); // Actualisation session
+include ('include/blocagepage_public.php');
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -58,6 +59,25 @@ include('include/connectBDD.php');
 <div align="center" id="Acteur" class="tabcontent">
    <form class="form-contact" action="traitement/acteur_insert.php" method="post">
        <h2 class="contact">Ajout d'acteur</h2>
+
+       <?php
+       if(isset($_GET['erreur'])){  //je verifie si il ya des erreurs
+           $err = $_GET['erreur'];
+           if($err==1 || $err==2 || $err==3)
+               echo "<p style='color:red'>L'acteur n'a pas été ajouté</p>"; // si oui affichage du message d erreur en rouge
+       }
+       ?>
+
+       <?php
+       if(isset($_GET['message'])){  //je verifie si il ya des erreurs
+           $mess = $_GET['message'];
+           if($mess==1)
+               echo "<p style='color:green'>L'acteur a bien été ajouté</p>"; // si oui affichage du message d erreur en rouge
+       }
+       ?>
+
+       <br>
+       <br>
 
        <div class="info_form">
            <div class="infos">

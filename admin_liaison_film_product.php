@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('include/actualisation_session.php'); // Actualisation session
+include ('include/blocagepage_public.php');
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -58,6 +59,23 @@ include('include/connectBDD.php');
 <div align="center" class="container">
   <form id="contact" action="traitement/liaison_film_producteur.php" method="post">
     <h2><center>Liaison Film Product</center></h2>
+    <br>
+    <?php
+    if(isset($_GET['erreur'])){  //je verifie si il ya des erreurs
+        $err = $_GET['erreur'];
+        if($err==1 || $err==2 || $err==3)
+            echo "<p style='color:red'>La liaison n'a pas été créée</p>"; // si oui affichage du message d erreur en rouge
+    }
+    ?>
+
+    <?php
+    if(isset($_GET['message'])){  //je verifie si il ya des erreurs
+        $mess = $_GET['message'];
+        if($mess==1)
+            echo "<p style='color:green'>La liaison a bien été créée</p>"; // si oui affichage du message d erreur en rouge
+    }
+    ?>
+    <br>
     <select  name="id_film" tabindex="" require >
             <?php
                 $req = $bdd->prepare(" SELECT id_film, titre FROM Film");
@@ -69,7 +87,7 @@ include('include/connectBDD.php');
 						 }
              ?>
             </select>
-    <select  name="id_prod" tabindex="" require >
+    <select  name="id_producteur" tabindex="" require >
             <?php
                 $req2 = $bdd->prepare(" SELECT id_producteur, nom_product, prenom_product FROM Producteur");
                 $req2->execute();

@@ -7,16 +7,19 @@
   $born_real = !empty($_POST['born_real']) ? $_POST['born_real'] : NULL;
 
   if(empty($nom_real)) {
-        echo "Erreur lors de l'ajout du realisateur";
-        retour();
+        // echo "Erreur lors de l'ajout du realisateur";
+        header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_real.php?erreur=1');
+        // retour();
     }
     else if(empty($prenom_real)) {
-        echo "Erreur lors de l'ajout du realisateur";
-        retour();
+        // echo "Erreur lors de l'ajout du realisateur";
+        header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_real.php?erreur=2');
+        // retour();
     }
     else if(empty($born_real)) {
-        echo "Erreur lors de l'ajout du realisateur";
-        retour();
+        // echo "Erreur lors de l'ajout du realisateur";
+        header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_real.php?erreur=3');
+        // retour();
     }
     else {
 
@@ -28,8 +31,9 @@
       'prenom_real'=> $prenom_real,
       'born_real'=> $born_real
     ));
-  echo "Le realisateur a bien été ajouté";
-        retour();
+  // echo "Le realisateur a bien été ajouté";
+  header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_real.php?message=1');
+        // retour();
     }
 
     function retour() {

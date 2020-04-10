@@ -10,14 +10,17 @@
 // var_dump($born_acteur);
 
   if(empty($nom_acteur)){
-        echo "Erreur lors de l'ajout de l'acteur ";
-        retour();
+        // echo "Erreur lors de l'ajout de l'acteur ";
+        header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_acteur.php?erreur=1');
+        // retour();
     }else if(empty($prenom_acteur)){
-        echo "Erreur lors de l'ajout de l'acteur ";
-        retour();
+        // echo "Erreur lors de l'ajout de l'acteur ";
+        header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_acteur.php?erreur=2');
+        // retour();
     }else if(empty($born_acteur)){
-        echo "Erreur lors de l'ajout de l'acteur ";
-        retour();
+        // echo "Erreur lors de l'ajout de l'acteur ";
+        header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_acteur.php?erreur=3');
+        // retour();
     }else{
 
 
@@ -28,8 +31,9 @@
     ':prenom_acteur'=> $prenom_acteur,
     ':born_acteur'=> $born_acteur
   ));
-  echo "L'ajout d'acteur est effectuées";
-  retour();
+  // echo "L'ajout d'acteur est effectuées";
+  header('Location: http://blombou.simplon-charleville.fr/allo_simplon/admin_ajout_acteur.php?message=1');
+  // retour();
     }
 
       function retour() {

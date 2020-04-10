@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('include/actualisation_session.php'); // Actualisation session
+include ('include/blocagepage_public.php');
 header('Content-type: text/html; charset=utf-8');
 require_once 'styleswitcher.php';
 
@@ -57,6 +58,23 @@ include('include/connectBDD.php');
 <div align="center" id="Affiche" class="tabcontent">
     <form class="form-contact" action="traitement/affiche_insert.php" method="post">
         <h2 class="contact">Ajout des photos</h2>
+        <br>
+        <?php
+        if(isset($_GET['erreur'])){  //je verifie si il ya des erreurs
+            $err = $_GET['erreur'];
+            if($err==1 || $err==2 || $err==3)
+                echo "<p style='color:red'>L'image n'a pas été ajoutée</p>"; // si oui affichage du message d erreur en rouge
+        }
+        ?>
+
+        <?php
+        if(isset($_GET['message'])){  //je verifie si il ya des erreurs
+            $mess = $_GET['message'];
+            if($mess==1)
+                echo "<p style='color:green'>L'image a bien été ajoutée</p>"; // si oui affichage du message d erreur en rouge
+        }
+        ?>
+        <br>
 
         <div class="info_form">
 
