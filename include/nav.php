@@ -46,9 +46,11 @@
 
 
                     <form action="search_bar_verif.php">
-                        <input type="text" placeholder="" name="search">
+                        <input class="form-control" type="text" value="" name="search" placeholder="Rechercher votre film"/>
                         <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                     </form>
+
+
 
                 </ul>
             </div>
@@ -73,9 +75,15 @@
     </div>
     <div class="menu-nav">
         <form class="search-bar" action="">
-            <input type="text" placeholder="" name="search">
+            <input  class="form-control"  type="text" id="search_film" value="" placeholder="Rechercher votre film" name="search">
             <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
         </form>
+
+        <div style="margin-top: 20px">
+          <div id="result-search">  <!-- C'est ici que nous aurons nos résultats de notre recherche -->
+          </div>
+        </div>
+
         <div class="menu-dada">
             <ul>
 

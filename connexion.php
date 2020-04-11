@@ -30,6 +30,7 @@ require_once 'styleswitcher.php'; // Changement de theme
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -50,6 +51,9 @@ include 'include/nav.php'; ?>
             <h2>Connexion</h2>
             <br>
             <br>
+            <div id="resultat">
+                  <!-- Nous allons afficher un retour en jQuery au visiteur -->
+            </div>
             <br>
 
             <?php
@@ -121,5 +125,63 @@ include 'include/nav.php'; ?>
 include 'include/footer.php';
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    $("#submit").click(function{
+
+        $.post(
+            'traitement/verif.php', // Un script PHP que l'on va créer juste après
+            {
+                mail_username : $("#mail_username").val(),  // Nous récupérons la valeur de nos inputs que l'on fait passer à connexion.php
+                password_user : $("#password_user").val()
+            },
+
+            function(data){
+              if(data == 'Success'){
+                     // Le membre est connecté. Ajoutons lui un message dans la page HTML.
+
+                     $("#resultat").html("<p>Vous avez été connecté avec succès !</p>");
+                }
+                else{
+                     // Le membre n'a pas été connecté. (data vaut ici "failed")
+
+                     $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+                }
+            },
+
+            'text' // Nous souhaitons recevoir "Success" ou "Failed", donc on indique text !
+         );
+
+    });
+
+});
+
+</script>
+<script>
+$(document).ready(function(){
+$('#search_film').keyup(function(){
+  $('#result-search').html('');
+
+  var film = $(this).val();
+
+  if(film != ""){
+    $.ajax({
+      type: 'GET',
+      url: 'fonctions/recherche_film.php',
+      data: 'film=' + encodeURIComponent(film),
+      success: function(data){
+        if(data != ""){
+          $('#result-search').append(data);
+        }else{
+          document.getElementById('result-search').innerHTML = "<div style='font-size: 20px; text-align: left; margin-top: 10px'>Aucun films</div>"
+        }
+      }
+    });
+  }
+});
+});
+</script>
 </body>
 </html>

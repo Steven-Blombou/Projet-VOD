@@ -41,6 +41,7 @@ require_once 'styleswitcher.php'; // Changement de theme
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 
@@ -58,5 +59,28 @@ require_once 'styleswitcher.php'; // Changement de theme
     include 'include/footer.php';
     ?>
 </body>
+<script>
+$(document).ready(function(){
+$('#search_film').keyup(function(){
+  $('#result-search').html('');
 
+  var film = $(this).val();
+
+  if(film != ""){
+    $.ajax({
+      type: 'GET',
+      url: 'fonctions/recherche_film.php',
+      data: 'film=' + encodeURIComponent(film),
+      success: function(data){
+        if(data != ""){
+          $('#result-search').append(data);
+        }else{
+          document.getElementById('result-search').innerHTML = "<div style='font-size: 20px; text-align: left; margin-top: 10px'>Aucun films</div>"
+        }
+      }
+    });
+  }
+});
+});
+</script>
 </html>

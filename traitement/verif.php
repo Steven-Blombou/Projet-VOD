@@ -24,6 +24,7 @@ if(isset($_POST['mail_username']) && isset($_POST['password_user'])) // Je verif
 							setcookie("allo_simplon_name", $recupino['pseudo_user'], time()+604800,'/'); // mise en place cookie pseudo sur 7 jours emplacement ou sera save le cookie
 							setcookie("allo_simplon_type_user", $recupinfo['id_type_user'], time()+604800,'/'); // mise en place cookie type user sur 7 jours emplacement ou sera save le cookie
 							header('Location: /allo_simplon/index.php');
+							// echo "Success";
 
 						}
 						else
@@ -31,21 +32,25 @@ if(isset($_POST['mail_username']) && isset($_POST['password_user'])) // Je verif
 							$_SESSION['username'] = $recupinfo['pseudo_user']; // Je compte les valeurs des varibles
 							$_SESSION['typeuser'] = $recupinfo['id_type_user'];
 							header('Location: /allo_simplon/index.php');  // nom d'utilisateur et mot de passe correctes
+							// echo "Failed";
 						}
 					}
 					else
 					{
 						header('Location: /allo_simplon/connexion.php?erreur=1'); // mot de passe incorrect
+						// echo "Failed";
 					}
 				}
 				else
 				{
 					header('Location: /allo_simplon/connexion.php?erreur=2'); // pseudo ou mail invalide
+					// echo "Failed";
 				}
 			}
 			else
 			{
 			header('Location: /allo_simplon/connexion.php?erreur=3'); // utilisateur ou mot de passe vide
+			// echo "Failed";
 			}
 
 ///$bdd->closeCursor(); // fermer la connexion
